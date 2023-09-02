@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hunter Game</title>
+    <link rel="stylesheet" href="./styles/output.css">
+</head>
+
+<body>
+    <div class="main overflow-hidden">
+        <div class="title customfont text-lg font-semibold py-3 flex items-center justify-around bg-black text-white">
+            <div>Aim Trainer</div>
+            <div class="settings flex gap-3">
+                <div class="bgcolor mr-1">Target Color : </div>
+                <button class="red p-4 bg-[#D2042D]"></button>
+                <button class="blue p-4 bg-[#0047AB]"></button>
+            </div>
+            <div id="score">Score : </div>
+            <div id="time">Time : 45</div>
+        </div>
+        <div class="game flex items-center justify-center relative h-screen w-screen bg-slate-900" onmousemove="getCursor(event)">
+            <div class="absolute tg h-10 w-10 bg-[#D2042D]"></div>
+        </div>
+    </div>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
