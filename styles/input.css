@@ -12,3 +12,10 @@
 .para{
     font-family: 'Roboto', sans-serif;
 }
+
+.game{
+    background-size: 40px 40px;
+    background-image:
+    linear-gradient(to right, rgb(32, 32, 32) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(29, 29, 29) 1px, transparent 1px);
+}
