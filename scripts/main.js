@@ -1,10 +1,12 @@
 let score = 0;
+var audio = new Audio('./assets/coins.mp3');
 
 let tg = document.querySelector('.tg')
 let time_rem = document.querySelector('#time')
 tg.addEventListener('click',function(){
     tg.style.visibility = "hidden";
     score = score + 1;
+    audio.play();
 })
 
 let time = 30;
@@ -38,7 +40,14 @@ function getRandomInt() {
     if(time < 0){
         clearInterval(interval)
         time_rem.innerHTML = `Time: ${0}`;
-        getscore();
+        document.querySelector('.gameover').style.display = 'flex'
+        document.querySelector('.instructions').style.display = 'none'
+        let highscore = (localStorage.getItem("score"));
+        if(score > highscore){
+            localStorage.setItem("score", score);
+            highscore = score;
+        }
+        document.querySelector('.highscore').innerHTML = `Highscore : ${highscore}`
     }
     let game = document.getElementById('gamescreen');
     let x = ( Math.floor(Math.random() * ((game.offsetWidth-100) - 0 + 1)) + 0);
@@ -87,6 +96,36 @@ document.getElementById('close').addEventListener('click',function(){
     interval = setInterval(getRandomInt,targetlife)
 })
 
-function close_instructions(){
+let size1x = document.querySelector('.t1x').addEventListener('click',function(){
+    document.querySelector('.t1x').style.backgroundColor = '#cbd5e1'
+    document.querySelector('.t2x').style.backgroundColor = 'transparent'
+    document.querySelector('.t5x').style.backgroundColor = 'transparent'
+    tg.style.scale = 1
+    
+})
+let size2x = document.querySelector('.t2x').addEventListener('click',function(){
+    document.querySelector('.t1x').style.backgroundColor = 'transparent'
+    document.querySelector('.t2x').style.backgroundColor = '#cbd5e1'
+    document.querySelector('.t5x').style.backgroundColor = 'transparent'
+    tg.style.scale = 2
+})
+let size5x = document.querySelector('.t5x').addEventListener('click',function(){
+    document.querySelector('.t1x').style.backgroundColor = 'transparent'
+    document.querySelector('.t2x').style.backgroundColor = 'transparent'
+    document.querySelector('.t5x').style.backgroundColor = '#cbd5e1'
+    tg.style.scale = 5
+})
 
+
+function restart(){
+    location.reload();
 }
+
+gsap.set('.instructions',{y: "100%",opacity: 0});
+
+gsap.to('.instructions',{
+    y: 0,
+    opacity:1,
+    duration: 0.5,
+    delay: 0.3
+})
