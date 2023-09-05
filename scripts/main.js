@@ -152,14 +152,6 @@ function restart() {
     location.reload();
 }
 
-gsap.set('.instructions', { y: "100%", opacity: 0 });
-
-gsap.to('.instructions', {
-    y: 0,
-    opacity: 1,
-    duration: 0.5,
-    delay: 0.3
-})
 
 let load = 1;
 function loader() {
@@ -184,4 +176,12 @@ function clearloader(){
         height: 0,
         duration: 0.5,
     })
+    gsap.set('.instructions', { y: "100%", opacity: 0 });
+
+    gsap.to('.instructions', {
+    y: 0,
+    opacity: 1,
+    duration: 0.5,
+    delay: 0.5
+})
 }
