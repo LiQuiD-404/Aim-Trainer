@@ -38,22 +38,22 @@ let time60 = document.querySelector('.sec60').addEventListener('click', function
 function getRandomInt() {
     tg.style.visibility = "visible";
     gsap.set('.tg', { scale: 0 });
-    if(targetlife == 1000){
+    if (targetlife == 1000) {
         gsap.to('.tg', {
             scale: targetsize,
             duration: 0.5,
         })
     }
-    if(targetlife == 800){
+    if (targetlife == 800) {
         gsap.to('.tg', {
             scale: targetsize,
             duration: 0.1,
         })
     }
-    if(targetlife == 500){
+    if (targetlife == 500) {
         gsap.set('.tg', { scale: targetsize });
     }
-    
+
     time_rem.innerHTML = `Time: ${time}`;
     time--;
     if (time < 0) {
@@ -82,12 +82,20 @@ let red = document.querySelector('.red').addEventListener('click', function () {
     tg.style.backgroundColor = '#D2042D'
     document.querySelector('.red').style.border = '1px solid white'
     document.querySelector('.blue').style.border = 'none'
+    document.querySelector('.cyan').style.border = 'none'
 
 })
 let blue = document.querySelector('.blue').addEventListener('click', function () {
     tg.style.backgroundColor = '#0047AB'
     document.querySelector('.blue').style.border = '1px solid white'
     document.querySelector('.red').style.border = 'none'
+    document.querySelector('.cyan').style.border = 'none'
+})
+let cyan = document.querySelector('.cyan').addEventListener('click', function () {
+    tg.style.backgroundColor = '#1fc67c'
+    document.querySelector('.cyan').style.border = '1px solid white'
+    document.querySelector('.red').style.border = 'none'
+    document.querySelector('.blue').style.border = 'none'
 })
 
 let targetlife = 1000;
@@ -153,3 +161,27 @@ gsap.to('.instructions', {
     delay: 0.3
 })
 
+let load = 1;
+function loader() {
+    if(load < 90){
+        load = load + Math.floor(Math.random() * 15);
+        document.querySelector('.load').innerHTML = load + "%";
+    }
+    else{
+        document.querySelector('.load').innerHTML = "100%";
+        clearInterval(loadinterval)
+        clearloader();
+    }
+
+}
+
+let loadinterval = setInterval(() => {
+    loader();
+}, 200);
+
+function clearloader(){
+    gsap.to('.loader',{
+        height: 0,
+        duration: 0.5,
+    })
+}
